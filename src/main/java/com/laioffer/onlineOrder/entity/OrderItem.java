@@ -1,4 +1,4 @@
-package com.laioffer.onlineorder.entity;
+package com.laioffer.onlineOrder.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -18,6 +18,17 @@ public class OrderItem implements Serializable {
     private int quantity;
 
     private double price;
+
+    //create foreign key to link two tables  in Hibernate
+    //OrderItem N:1 MenuItem
+    @ManyToOne
+    private MenuItem menuItem;
+
+    //create foreign key to link two tables  in Hibernate
+    //OrderItem N:1 Cart
+    @ManyToOne
+    @JsonIgnore
+    private Cart cart;
 
     public int getId() {
         return id;
@@ -41,6 +52,22 @@ public class OrderItem implements Serializable {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public MenuItem getMenuItem() {
+        return menuItem;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setMenuItem(MenuItem menuItem) {
+        this.menuItem = menuItem;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 }
 

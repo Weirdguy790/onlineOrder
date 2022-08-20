@@ -1,4 +1,4 @@
-package com.laioffer.onlineorder.entity;
+package com.laioffer.onlineOrder.entity;
 
 
 import javax.persistence.*;
@@ -20,6 +20,12 @@ public class Customer implements Serializable  {
     private String password;
 
     private boolean enabled;
+
+    //create foreign key to link two tables  in Hibernate
+    //customer 1:1 cart
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(unique = true)
+    private Cart cart;
 
     public String getEmail() {
         return email;
@@ -59,6 +65,14 @@ public class Customer implements Serializable  {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 }
 

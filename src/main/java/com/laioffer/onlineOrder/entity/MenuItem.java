@@ -1,4 +1,4 @@
-package com.laioffer.onlineorder.entity;
+package com.laioffer.onlineOrder.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -21,6 +21,13 @@ public class MenuItem implements Serializable {
     private double price;
 
     private String imageUrl;
+
+    //create foreign key to link two tables  in Hibernate
+    //Menuitem N:1 Restaurant
+    @ManyToOne
+    @JsonIgnore
+    private Restaurant restaurant;
+
 
     public int getId() {
         return id;
@@ -60,6 +67,14 @@ public class MenuItem implements Serializable {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 }
 

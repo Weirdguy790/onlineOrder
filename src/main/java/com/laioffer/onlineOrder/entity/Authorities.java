@@ -1,4 +1,4 @@
-package com.laioffer.onlineorder.entity;
+package com.laioffer.onlineOrder.entity;
 
 
 import javax.persistence.Entity;
@@ -15,6 +15,7 @@ public class Authorities implements Serializable {
 
     // why do we implement serializable?
     // Because you want to store or send an object.
+
     // Does it give any advantages or security?
     // It makes storing and sending objects easy. It has nothing to do with security.
 

@@ -1,4 +1,4 @@
-package com.laioffer.onlineorder.entity;
+package com.laioffer.onlineOrder.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -22,6 +22,14 @@ public class Restaurant implements Serializable {
     private String phone;
 
     private String imageUrl;
+
+    //create foreign key to link two tables  in Hibernate
+    //Restaurant 1:N MenuItem
+    @OneToMany(mappedBy = "restaurant",  cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
+    //@JsonIgnore is used to ignore the logical property used in serialization and deserialization.
+    private List<MenuItem> menuItemList;
+
 
     public int getId() {
         return id;
@@ -61,6 +69,14 @@ public class Restaurant implements Serializable {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public List<MenuItem> getMenuItemList() {
+        return menuItemList;
+    }
+
+    public void setMenuItemList(List<MenuItem> menuItemList) {
+        this.menuItemList = menuItemList;
     }
 }
 
